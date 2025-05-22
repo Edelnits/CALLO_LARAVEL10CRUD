@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +13,12 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/get_employee', [TransactionController::class, 'getEmployee']);
-Route::get('/get_employee_data', [TransactionController::class, 'getEmployeeData']);
-Route::get('/get_employee_challenging', [TransactionController::class, 'getEmployeeChallenging']);
-Route::get('/get_employee_difficult', [TransactionController::class, 'getEmployeeDifficult']);
+// Route::resource('products', App\Http\Controllers\ProductController::class);
+  
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
